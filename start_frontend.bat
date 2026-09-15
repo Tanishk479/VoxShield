@@ -1,7 +1,6 @@
 @echo off
 echo ==============================================
 echo  VoxShield — Frontend Startup
-echo  SIH 2026 — SIH26104
 echo ==============================================
 echo.
 
