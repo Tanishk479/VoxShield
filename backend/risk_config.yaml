@@ -1,0 +1,61 @@
+# VoxShield — Risk Engine Weight Configuration
+# All weights must sum to 1.0 within each group.
+# Adjust to tune scoring without changing application code.
+
+# ─── Signal Weights ───────────────────────────────────────────────────────────
+# How much each signal contributes to the final risk score (0.0 – 1.0)
+weights:
+  voice_authenticity: 0.30      # Probability the voice is synthetic
+  scam_probability: 0.28        # Scam intent classifier output
+  financial_request: 0.18       # Financial/OTP/UPI request detected
+  urgency_level: 0.10           # Urgency language detected
+  identity_claim: 0.07          # Caller claims to be someone known
+  caller_reputation: 0.07       # Previous alerts from this number
+
+# ─── Caller Reputation Modifiers ─────────────────────────────────────────────
+caller_reputation:
+  unknown_number_penalty: 10    # Added to score for unknown numbers
+  repeat_alert_penalty: 8       # Per previous alert for this number (max 3x)
+  trusted_contact_bonus: -20    # Subtract from score for known contacts
+
+# ─── Scam Category Severity Multipliers ──────────────────────────────────────
+# Multiplier applied to scam_probability for high-severity scam types
+category_multipliers:
+  DIGITAL_ARREST: 1.20
+  POLICE_IMPERSONATION: 1.15
+  BANKING: 1.10
+  UPI: 1.10
+  FAMILY_IMPERSONATION: 1.08
+  KYC: 1.05
+  OTP: 1.05
+  BLACKMAIL: 1.15
+  IDENTITY_THEFT: 1.12
+  INVESTMENT: 1.00
+  LOAN: 1.00
+  JOB: 0.95
+  COURIER: 0.95
+  LOTTERY: 0.90
+  TECH_SUPPORT: 1.00
+  SIM_BLOCK: 1.05
+  ACCOUNT_BLOCK: 1.05
+
+# ─── Risk Level Thresholds ────────────────────────────────────────────────────
+thresholds:
+  low_max: 30
+  caution_max: 54
+  high_max: 74
+  critical_min: 75
+
+# ─── Explainer Labels ─────────────────────────────────────────────────────────
+# Human-readable explanations for each signal
+explanations:
+  high_voice_fake: "AI-generated voice suspected"
+  medium_voice_fake: "Voice authenticity could not be confirmed"
+  high_scam: "High probability of scam intent detected"
+  medium_scam: "Possible scam language detected"
+  financial_request: "Caller requested money, OTP, or UPI transfer"
+  urgency: "Urgent or pressuring language detected"
+  identity_claim: "Caller claimed to be a known or trusted person"
+  unknown_caller: "Unknown number — no prior contact history"
+  repeat_offender: "This number has triggered alerts before"
+  trusted_contact: "Number matches a trusted contact"

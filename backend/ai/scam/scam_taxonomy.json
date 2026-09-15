@@ -1,0 +1,351 @@
+{
+  "version": "1.0",
+  "description": "VoxShield India Scam Taxonomy — 18 categories covering common Indian voice scam patterns",
+  "categories": [
+    {
+      "id": "BANKING",
+      "name": "Bank Impersonation",
+      "severity": "HIGH",
+      "description": "Caller impersonates a bank employee to extract account details.",
+      "indicators": [
+        "your account has been frozen",
+        "bank security team",
+        "unusual transaction detected",
+        "verify your account",
+        "your account will be suspended",
+        "aapka account band ho jayega",
+        "bank se bol raha hoon"
+      ],
+      "entities": ["account number", "IFSC", "net banking password"],
+      "recommended_action": "Hang up and call your bank directly using the number on the back of your card."
+    },
+    {
+      "id": "UPI",
+      "name": "UPI / Payment Scam",
+      "severity": "CRITICAL",
+      "description": "Caller tricks victim into sharing UPI PIN or sending money via UPI.",
+      "indicators": [
+        "UPI refund",
+        "send ₹1 to verify",
+        "collect request",
+        "UPI se bhejo",
+        "paytm karo",
+        "google pay karo",
+        "phonepe",
+        "UPI PIN",
+        "payment link"
+      ],
+      "entities": ["UPI ID", "UPI PIN", "payment amount"],
+      "recommended_action": "Never share UPI PIN. Hang up immediately. Report to cybercrime.gov.in."
+    },
+    {
+      "id": "KYC",
+      "name": "KYC Scam",
+      "severity": "HIGH",
+      "description": "Caller claims KYC update is urgently required to avoid service disruption.",
+      "indicators": [
+        "KYC incomplete",
+        "KYC update required",
+        "your SIM will be blocked",
+        "your wallet will be suspended",
+        "KYC verification",
+        "aapka KYC pending hai",
+        "Aadhaar verification"
+      ],
+      "entities": ["Aadhaar number", "PAN", "date of birth"],
+      "recommended_action": "KYC is never done over phone calls. Visit your bank/telecom store in person."
+    },
+    {
+      "id": "OTP",
+      "name": "OTP Request",
+      "severity": "CRITICAL",
+      "description": "Caller asks for OTP received on victim's phone.",
+      "indicators": [
+        "OTP share karo",
+        "what is the OTP",
+        "tell me the code",
+        "SMS mein code aaya hoga",
+        "verification code",
+        "one time password",
+        "share the number you received",
+        "share the OTP",
+        "share your OTP",
+        "enter the OTP",
+        "code batao",
+        "OTP batao"
+      ],
+      "entities": ["OTP", "verification code"],
+      "recommended_action": "NEVER share OTP with anyone. No legitimate organization asks for OTP over a call."
+    },
+    {
+      "id": "DIGITAL_ARREST",
+      "name": "Digital Arrest / CBI Scam",
+      "severity": "CRITICAL",
+      "description": "Caller impersonates CBI/police/customs and threatens 'digital arrest'.",
+      "indicators": [
+        "digital arrest",
+        "CBI officer",
+        "you are under investigation",
+        "drugs found in parcel",
+        "Interpol",
+        "FIR filed against you",
+        "cybercrime department",
+        "aapke khilaf case hai",
+        "arrest warrant"
+      ],
+      "entities": ["case number", "warrant number"],
+      "recommended_action": "Digital arrest does not exist. Hang up. Real officers do not demand money over phone."
+    },
+    {
+      "id": "POLICE_IMPERSONATION",
+      "name": "Police / Government Impersonation",
+      "severity": "HIGH",
+      "description": "Caller impersonates police, IB, ED, or other government authorities.",
+      "indicators": [
+        "police officer",
+        "ED department",
+        "income tax officer",
+        "customs officer",
+        "government officer",
+        "thana se bol raha hoon",
+        "inspector",
+        "commissioner",
+        "cyber crime department",
+        "cyber crime se bol raha hoon",
+        "police department se bol raha hoon",
+        "inspector bol raha hoon",
+        "legal action liya jayega",
+        "arrest kar liya jayega",
+        "bank account investigation",
+        "verification ke liye",
+        "aadhaar verify",
+        "suspicious transaction"
+      ],
+      "entities": ["badge number", "department name"],
+      "recommended_action": "Contact your local police station directly to verify. Never pay over phone."
+    },
+    {
+      "id": "FAMILY_IMPERSONATION",
+      "name": "Family / Friend Impersonation",
+      "severity": "HIGH",
+      "description": "Caller impersonates a family member or friend in distress.",
+      "indicators": [
+        "beta main hoon",
+        "papa main hoon",
+        "accident ho gaya",
+        "hospital mein hoon",
+        "jail mein hoon",
+        "mushkil mein hoon",
+        "please help",
+        "paise chahiye abhi",
+        "emergency hai",
+        "beta main hoon",
+  "papa main hoon",
+  "accident ho gaya",
+  "hospital mein hoon",
+  "jail mein hoon",
+  "mushkil mein hoon",
+  "please help",
+  "paise chahiye abhi",
+  "emergency hai",
+  "brother",
+  "behen",
+  "sister",
+  "mummy",
+  "papa",
+  "phone kharab ho gaya",
+  "phone damage ho gaya",
+  "phone kho gaya",
+  "new number se call kar raha",
+  "mummy papa ko mat batana",
+  "ghar pe mat batana",
+  "upi kar de",
+  "paise bhej",
+  "mujhe paise chahiye"
+      ],
+      "entities": ["family member name", "money amount", "location"],
+      "recommended_action": "Hang up. Call the family member directly on their known number to verify."
+    },
+    {
+      "id": "COURIER",
+      "name": "Courier / Parcel Scam",
+      "severity": "HIGH",
+      "description": "Caller claims a parcel contains illegal items or needs customs payment.",
+      "indicators": [
+        "your parcel has been stopped",
+        "customs duty",
+        "illegal items in package",
+        "FedEx",
+        "DHL",
+        "courier company",
+        "aapka parcel rokaa gaya hai",
+        "drugs found"
+      ],
+      "entities": ["tracking number", "parcel amount"],
+      "recommended_action": "Verify tracking number directly with the courier company's official website."
+    },
+    {
+      "id": "JOB",
+      "name": "Fake Job Offer",
+      "severity": "MEDIUM",
+      "description": "Caller offers a high-paying job in exchange for registration fees.",
+      "indicators": [
+        "job offer",
+        "work from home",
+        "salary package",
+        "immediate joining",
+        "registration fee",
+        "naukri.com",
+        "placement fee",
+        "interview confirmed"
+      ],
+      "entities": ["company name", "job title", "fee amount"],
+      "recommended_action": "Legitimate employers never ask for upfront fees. Verify the company independently."
+    },
+    {
+      "id": "INVESTMENT",
+      "name": "Investment / Trading Scam",
+      "severity": "HIGH",
+      "description": "Caller promises high returns on investments, crypto, or trading apps.",
+      "indicators": [
+        "guaranteed returns",
+        "double your money",
+        "crypto investment",
+        "trading app",
+        "SEBI approved",
+        "expert trader",
+        "profit guarantee",
+        "investment opportunity"
+      ],
+      "entities": ["investment amount", "platform name", "returns percentage"],
+      "recommended_action": "No investment guarantees returns. Verify SEBI registration at sebi.gov.in."
+    },
+    {
+      "id": "LOAN",
+      "name": "Loan Scam",
+      "severity": "MEDIUM",
+      "description": "Caller offers instant loan with minimal documentation but requires upfront fees.",
+      "indicators": [
+        "instant loan",
+        "loan approved",
+        "processing fee",
+        "RBI approved",
+        "no documents required",
+        "loan disbursement",
+        "processing charge"
+      ],
+      "entities": ["loan amount", "fee amount"],
+      "recommended_action": "Legitimate lenders never ask for upfront fees. Contact banks directly."
+    },
+    {
+      "id": "LOTTERY",
+      "name": "Lottery / Prize Scam",
+      "severity": "MEDIUM",
+      "description": "Caller claims victim has won a prize but must pay a fee to claim it.",
+      "indicators": [
+        "you have won",
+        "lottery winner",
+        "prize money",
+        "KBC winner",
+        "lucky draw",
+        "claim your prize",
+        "processing charges"
+      ],
+      "entities": ["prize amount", "processing fee"],
+      "recommended_action": "You cannot win a lottery you did not enter. Hang up immediately."
+    },
+    {
+      "id": "SIM_BLOCK",
+      "name": "SIM Block Threat",
+      "severity": "MEDIUM",
+      "description": "Caller threatens to block SIM unless personal details are shared.",
+      "indicators": [
+        "your SIM will be blocked",
+        "TRAI notice",
+        "DOT department",
+        "telecom authority",
+        "SIM deactivation",
+        "aapka number band ho jayega",
+        "illegal activities from your number"
+      ],
+      "entities": ["mobile number", "Aadhaar"],
+      "recommended_action": "TRAI/DOT do not call individuals. Contact your carrier directly."
+    },
+    {
+      "id": "ACCOUNT_BLOCK",
+      "name": "Account Suspension Threat",
+      "severity": "HIGH",
+      "description": "Caller threatens to suspend bank account, wallet, or social media account.",
+      "indicators": [
+        "account suspended",
+        "account will be blocked",
+        "verify immediately",
+        "last warning",
+        "aapka account block ho raha hai",
+        "urgent action required"
+      ],
+      "entities": ["account type", "deadline"],
+      "recommended_action": "Log into your account directly via official app/website to check status."
+    },
+    {
+      "id": "TECH_SUPPORT",
+      "name": "Tech Support Scam",
+      "severity": "MEDIUM",
+      "description": "Caller claims to be from tech support and asks for remote access or payment.",
+      "indicators": [
+        "Microsoft support",
+        "Google security",
+        "virus detected",
+        "your computer is hacked",
+        "remote access",
+        "tech support",
+        "refund processing"
+      ],
+      "entities": ["software name", "subscription amount"],
+      "recommended_action": "Microsoft/Google never call proactively. Hang up immediately."
+    },
+    {
+      "id": "BLACKMAIL",
+      "name": "Blackmail / Extortion",
+      "severity": "CRITICAL",
+      "description": "Caller threatens victim with fake compromising material unless paid.",
+      "indicators": [
+        "your video is with us",
+        "we will share your photos",
+        "pay or we expose",
+        "sextortion",
+        "blackmail",
+        "send money or else",
+        "aapki photos hamare paas hain"
+      ],
+      "entities": ["demand amount", "payment method"],
+      "recommended_action": "Do not pay. Report to cybercrime.gov.in immediately. Contact local police."
+    },
+    {
+      "id": "IDENTITY_THEFT",
+      "name": "Identity Theft",
+      "severity": "CRITICAL",
+      "description": "Caller collects PAN, Aadhaar, DOB, or other identity documents.",
+      "indicators": [
+        "share your Aadhaar",
+        "PAN card number",
+        "date of birth",
+        "mother's maiden name",
+        "identity verification",
+        "KYC documents",
+        "share your ID"
+      ],
+      "entities": ["Aadhaar", "PAN", "passport", "voter ID"],
+      "recommended_action": "Never share identity documents over phone. Hang up and report."
+    },
+    {
+      "id": "UNKNOWN",
+      "name": "Unknown / Suspicious",
+      "severity": "LOW",
+      "description": "Suspicious patterns detected but category not determined.",
+      "indicators": [],
+      "entities": [],
+      "recommended_action": "Verify the caller's identity through an independent channel before taking any action."
+    }
+  ]
+}

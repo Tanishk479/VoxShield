@@ -1,0 +1,65 @@
+# VoxShield — Model & Backend Configuration
+# Change these values to swap models without touching application code.
+
+# ─── Speech Recognition ───────────────────────────────────────────────────────
+speech:
+  backend: "whisper"             # Options: "whisper" | "indic"
+  whisper:
+    model_size: "tiny"           # Options: "tiny" | "base" | "small"
+    device: "cpu"
+    language: null               # null = auto-detect
+    compute_type: "int8"         # Reduces RAM on CPU
+  indic:
+    model_id: "ai4bharat/indic-conformer-600m-multilingual"
+    enabled: false               # Disabled — too heavy for 8GB RAM demo
+    note: "Requires 4GB+ RAM. Enable on server deployment only."
+
+# ─── Deepfake Detection ───────────────────────────────────────────────────────
+deepfake:
+  backend: "spectra"             # Options: "spectra" | "wav2vec2" | "disabled"
+  spectra:
+    model_id: "lab260/Spectra-0"
+    device: "cpu"
+    cache_dir: "./model_cache"
+  wav2vec2:
+    model_id: "Sara1708/deepfake-audio-wav2vec2"
+    device: "cpu"
+    cache_dir: "./model_cache"
+
+# ─── Scam Intelligence ────────────────────────────────────────────────────────
+scam:
+  backend: "hybrid"              # Options: "hybrid" | "rules_only" | "model_only"
+  taxonomy_path: "./ai/scam/scam_taxonomy.json"
+  confidence_threshold: 0.55
+
+# ─── Speaker Verification ─────────────────────────────────────────────────────
+speaker:
+  backend: "disabled"            # Options: "speechbrain" | "disabled"
+  note: "Enable in Phase 2. Requires user voice enrollment."
+
+# ─── Risk Engine ──────────────────────────────────────────────────────────────
+risk:
+  config_path: "./risk_config.yaml"
+  thresholds:
+    low: 30
+    caution: 55
+    high: 75
+    critical: 88
+
+# ─── Performance ──────────────────────────────────────────────────────────────
+performance:
+  chunk_duration_seconds: 5     # Audio chunk size for live streaming
+  max_audio_duration_seconds: 300
+  benchmark_on_startup: false
+
+# ─── Security ─────────────────────────────────────────────────────────────────
+security:
+  jwt_secret_env: "VOXSHIELD_JWT_SECRET"  # Set in .env file
+  jwt_algorithm: "HS256"
+  jwt_expire_minutes: 1440       # 24 hours
+
+# ─── Storage ──────────────────────────────────────────────────────────────────
+storage:
+  database_url: "sqlite+aiosqlite:///./voxshield.db"
+  audio_retention_enabled: false  # Do not store audio by default (privacy)
+  transcript_retention_days: 30
